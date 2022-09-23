@@ -1,0 +1,26 @@
+name: deploy to s3 bucket
+
+on:
+  workflow_dispatch: {}
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  BRANCH: ${{ inputs.branch }}
+
+jobs:
+  DeployS3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3
+      - name: install
+        run: |
+          pip install boto3
+      - name: run
+        run: | 
+          python ./github/workflows/test.py
