@@ -8,19 +8,48 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
-  DeployS3:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          ref: master
-      - uses: actions/setup-python@v2
+          node-version: 16
+      - name: Install dependencies
+        run: npm install
+      - name: Generate build
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          python-version: 3
-      - name: install
+          name: react-build
+          path: build
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    env: 
+      S3_BUCKET_ID: czen.link
+      CD_ID_CZEN_LINK: E1GZCIJKIWZUIZ
+      CD_ID_WWW_CZEN_LINK: EBL0Z0IYXDN9
+    steps:
+      - name: Install Python3
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install Python packages
+        run: pip install boto3
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Get artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: react-build
+          path: build
+      - name: Upload files to S3 bucket
+        run: python .github/workflows/s3_upload.py $S3_BUCKET_ID
+      - name: Invalidate CloudFront
         run: |
-          pip install boto3
-      - name: run
-        run: | 
-          python .github/workflows/test.py
-
+          python .github/workflows/cloudfront_invalidation.py $CD_ID_CZEN_LINK
+          python .github/workflows/cloudfront_invalidation.py $CD_ID_WWW_CZEN_LINK
