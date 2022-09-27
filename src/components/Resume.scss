@@ -1,6 +1,7 @@
 .resume {
   background-color: cadetblue;
-  height: 100vh;
+  height: calc(100vh - 70px);
   width: 100%;
   position: relative;
+  top: 70px;
 }
