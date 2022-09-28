@@ -1,7 +1,57 @@
 .home {
-  background-color: rebeccapurple;
   height: calc(100vh - 70px);
   width: 100%;
   position: relative;
   top: 70px;
+}
+
+.particles-bg-canvas-self{
+  background: #16a085;
+}
+
+.content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1100px;
+  margin: auto;
+  padding: 1rem;
+
+  h1 {
+    font-size: 80px;
+    font-family: 'opensans';
+    color: #fff;
+    margin: 0 auto 10px auto;
+  }
+
+  h3 {
+    font-size: 28px;
+    line-height: 1.2em;
+    font-style: italic;
+    color: #ddd;
+    margin: 0 auto;
+    width: 78%;
+  }
+}
+
+.scrolldown {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -19px;
+}
+
+@media screen and (max-width:940px) {
+  .content {
+    h1 {
+      font-size: 44px;
+      margin: 0 auto;
+    }
+
+    h3 {
+      font-size: 16px;
+      line-height: 1.1em;
+    }
+  } 
 }
