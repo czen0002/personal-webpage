@@ -4,13 +4,13 @@ import './Home.scss'
 import { Link } from 'react-scroll'
 import { BiChevronDownCircle } from 'react-icons/bi'
 
-const Home = () => {
+const Home = ({ data }) => {
   return (
     <div className='home' id='home'>
       <ParticlesBg type='cobweb' bg={true} />
       <div className='content'>
-        <h1 className="responsive-headline">CHENG ZENG</h1>
-        <h3>I am a Full Stack Engineer</h3>
+        <h1 className="responsive-headline">{data.name}</h1>
+        <h3>{data.description}</h3>
       </div>
       <p className="scrolldown">
         <Link to='about' smooth={true} duration={1000} offset={-70}>
