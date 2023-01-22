@@ -1,8 +1,8 @@
 # Personal Webpage
 
-[![CICD](https://github.com/czen0002/personal-webpage/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/czen0002/personal-webpage/actions/workflows/deploy.yml)
+[CICD](https://github.com/czen0002/personal-webpage/actions/workflows/deploy.yml)
 
-[CHENGZENG](https://https://czen.link/) is a personal page built with React, deployed in AWS S3 and served using AWS CloudFront.
+[CHENGZENG](https://czen.link/) is a personal page built with React, deployed in AWS S3 and served using AWS CloudFront.
 
 ## Technologies
 ### Frontend
