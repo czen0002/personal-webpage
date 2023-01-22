@@ -12,6 +12,7 @@
 - GitHub Actions
 - AWS S3
 - AWS CloudFront
+- AWS Route 53
 
 ## Available Scripts
 
